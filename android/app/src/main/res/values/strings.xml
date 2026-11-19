@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BookahTasks</string>
+
+    <!-- sign in -->
+    <string name="sign_in_title">Sign in to Nextcloud</string>
+    <string name="sign_in_hint">Type your server address, your user name and an app password made for BookahTasks (Nextcloud: Settings, Security, Devices and sessions). The password is kept encrypted on this phone and is never shown.</string>
+    <string name="field_server">Server address</string>
+    <string name="field_user">User name</string>
+    <string name="field_password">App password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="status_syncing">Syncing…</string>
+    <string name="err_address_https">The address must start with https:// (or just be the host name).</string>
+    <string name="err_need_both">Type the user name and the app password.</string>
+    <string name="err_unreachable">Could not reach the server. Is Tailscale on?</string>
+    <string name="err_not_accepted">The server did not accept the user name or app password.</string>
+
+    <!-- navigation -->
+    <string name="nav_today">Today</string>
+    <string name="nav_schedule">Schedule</string>
+    <string name="nav_inbox">Inbox</string>
+    <string name="nav_upcoming">Upcoming</string>
+    <string name="nav_someday">Someday</string>
+    <string name="nav_logbook">Logbook</string>
+    <string name="nav_lists">Lists</string>
+    <string name="nav_tags">Tags</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_refresh">Sync now</string>
+    <string name="nav_open_menu">Open the menu</string>
+    <string name="nav_show_hide">Show or hide this list</string>
+    <string name="nav_back">Back</string>
+    <string name="nav_close">Close</string>
+
+    <!-- screens -->
+    <string name="overdue_group">Overdue · %1$d</string>
+    <string name="overdue_hint">Open to see them</string>
+    <string name="today_evening">This evening</string>
+    <string name="empty_today">Nothing for today. Enjoy it.</string>
+    <string name="empty_schedule">No open tasks on your lists.</string>
+    <string name="schedule_no_date">No date</string>
+    <string name="empty_inbox">The inbox is empty.</string>
+    <string name="empty_upcoming">Nothing is waiting for a later day.</string>
+    <string name="empty_someday">Nothing is parked for someday.</string>
+    <string name="empty_logbook">No finished tasks yet.</string>
+    <string name="empty_list">No open tasks in this list.</string>
+    <string name="empty_tag">No open tasks with this tag.</string>
+    <string name="no_lists">No task lists yet. Make one in the Nextcloud Tasks app and pull to sync; BookahTasks will make its own list in a later version.</string>
+    <string name="log_earlier">Earlier</string>
+
+    <string name="word_today">Today</string>
+    <string name="word_tomorrow">Tomorrow</string>
+    <string name="word_yesterday">Yesterday</string>
+    <string name="word_at">%1$s at %2$s</string>
+
+    <!-- task rows and page -->
+    <string name="priority_high">High</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_low">Low</string>
+    <string name="subtasks_progress">%1$d of %2$d</string>
+    <string name="mark_repeats">Repeats</string>
+    <string name="mark_reminders">%1$d reminders</string>
+    <string name="mark_reminder_one">1 reminder</string>
+    <string name="mark_link">Link</string>
+    <string name="mark_waiting">Waiting</string>
+    <string name="state_done">done</string>
+    <string name="state_open">not done</string>
+    <string name="label_start">Starts</string>
+    <string name="label_deadline">Deadline</string>
+    <string name="label_reminders">Reminders</string>
+    <string name="label_repeat">Repeat</string>
+    <string name="label_list">List</string>
+    <string name="label_tags">Tags</string>
+    <string name="label_priority">Priority</string>
+    <string name="label_link">Link</string>
+    <string name="label_subtasks">Subtasks</string>
+    <string name="label_notes">Notes</string>
+    <string name="label_finished">Finished</string>
+    <string name="untitled_task">(no title)</string>
+    <string name="reminder_before_start">%1$s before the start</string>
+    <string name="reminder_before_deadline">%1$s before the deadline</string>
+    <string name="reminder_at_time">At the time</string>
+    <string name="reminder_absolute">At %1$s</string>
+    <string name="dur_minutes">%1$d min</string>
+    <string name="dur_hours">%1$d h</string>
+    <string name="dur_hours_minutes">%1$d h %2$d min</string>
+    <string name="dur_days">%1$d days</string>
+    <string name="dur_day">1 day</string>
+    <string name="repeat_every_day">Every day</string>
+    <string name="repeat_every_week">Every week</string>
+    <string name="repeat_every_month">Every month</string>
+    <string name="repeat_every_year">Every year</string>
+    <string name="repeat_every_n_days">Every %1$d days</string>
+    <string name="repeat_every_n_weeks">Every %1$d weeks</string>
+    <string name="repeat_every_n_months">Every %1$d months</string>
+    <string name="repeat_every_n_years">Every %1$d years</string>
+    <string name="repeat_other">Repeats (custom rule)</string>
+    <string name="repeat_on">%1$s, on %2$s</string>
+    <string name="repeat_until">%1$s, until %2$s</string>
+
+    <!-- sync line -->
+    <string name="sync_last">Last synced %1$s</string>
+    <string name="sync_never">Not synced yet</string>
+    <string name="sync_offline">Offline: showing the saved copy.</string>
+    <string name="sync_wrong_password">The server did not accept the saved password. Sign in again in Settings.</string>
+    <string name="sync_error">Sync did not finish (server answered %1$d).</string>
+
+    <!-- settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_account">Account</string>
+    <string name="settings_signed_in">Signed in as %1$s</string>
+    <string name="settings_sign_out">Sign out</string>
+    <string name="settings_general">General</string>
+    <string name="settings_evening">This evening starts at</string>
+    <string name="settings_look">Look</string>
+    <string name="settings_artwork">Seasonal artwork</string>
+    <string name="settings_artwork_note">One picture for each month, in Today, the menu and empty pages. Decoration only.</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="appearance_system">System</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="settings_sync">Sync</string>
+    <string name="settings_sync_note">Background refresh runs about every 15 minutes while the phone has a network. Nextcloud is only reachable when Tailscale is on.</string>
+    <string name="week_of">Week of %1$s</string>
+    <string name="speed">Speed</string>
+    <string name="speed_start">Screen opened to tasks shown: %1$s ms</string>
+    <string name="speed_load">Last read of the saved copy: %1$s ms</string>
+    <string name="speed_sync">Last sync with the server: %1$s ms</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_privacy">The app talks only to your Nextcloud. No analytics, no accounts, no AI.</string>
+    <string name="settings_crash">Crash log (stays on this phone)</string>
+    <string name="settings_crash_none">No crashes recorded.</string>
+    <string name="settings_crash_clear">Clear the log</string>
+    <string name="settings_hour_format">%1$02d:00</string>
+    <string name="settings_unreadable">%1$d items on the phone could not be read and are not shown.</string>
+
+    <!-- Phase 2 Build B: editing -->
+    <string name="msg_cant_change">That change could not be made. Check the task and try again.</string>
+    <string name="msg_no_list">There is no task list to add to yet. Make one in the Nextcloud Tasks app and pull to sync.</string>
+    <string name="undo_done">Task done</string>
+    <string name="undo_next_date">Moved to its next date</string>
+    <string name="undo_reopened">Task reopened</string>
+    <string name="undo_deleted">Task deleted</string>
+    <string name="undo_moved">Task moved</string>
+    <string name="undo_button">Undo</string>
+    <string name="mark_pending">Waiting to sync</string>
+    <string name="add_task">New task</string>
+    <string name="add_title_hint">What needs doing?</string>
+    <string name="add_button">Add</string>
+    <string name="add_goes_to">Goes to %1$s</string>
+    <string name="edit_title_hint">Title</string>
+    <string name="edit_notes_hint">Notes</string>
+    <string name="edit_set">Set</string>
+    <string name="edit_none">None</string>
+    <string name="edit_clear">Clear</string>
+    <string name="edit_ok">OK</string>
+    <string name="edit_cancel">Cancel</string>
+    <string name="edit_no_time">No time</string>
+    <string name="edit_pick_time">Pick a time</string>
+    <string name="edit_delete">Delete task</string>
+    <string name="edit_mark_done">Mark done</string>
+    <string name="edit_reopen">Reopen</string>
+    <string name="edit_add_subtask">Add a subtask</string>
+    <string name="edit_tags_dialog">Tags (separate with commas)</string>
+    <string name="edit_someday">Someday</string>
+    <string name="edit_list_dialog">Move to a list</string>
+    <string name="edit_priority_dialog">Priority</string>
+    <string name="label_priority_none">None</string>
+    <string name="conflict_title">Changed in two places</string>
+    <string name="conflict_text">This task was changed on Nextcloud while you changed it here too.\n\nYours: %1$s\nOn Nextcloud: %2$s</string>
+    <string name="conflict_gone">(deleted there)</string>
+    <string name="conflict_mine_delete">You deleted it</string>
+    <string name="conflict_keep_mine">Keep mine</string>
+    <string name="conflict_keep_server">Keep Nextcloud\'s</string>
+    <string name="conflict_keep_both">Keep both</string>
+    <string name="signout_title">Changes are still waiting</string>
+    <string name="signout_text">Some changes have not reached Nextcloud yet. If you sign out now they are lost.</string>
+    <string name="signout_anyway">Sign out anyway</string>
+    <string name="signout_wait">Stay signed in</string>
+    <string name="settings_default_list">New tasks go to</string>
+    <string name="settings_default_inbox">Tasks (inbox)</string>
+    <string name="settings_waiting">Changes waiting to be sent: %1$d</string>
+    <string name="settings_failed_head">Changes Nextcloud refused</string>
+    <string name="settings_failed_row">%1$s (answer %2$d)</string>
+    <string name="settings_retry">Try again</string>
+    <string name="settings_discard">Discard</string>
+    <string name="failed_deleted_task">A deleted task</string>
+
+    <!-- Reminders -->
+    <string name="reminders_channel">Reminders</string>
+    <string name="notif_start_now">Starts now</string>
+    <string name="notif_start_today">Starts today</string>
+    <string name="notif_due_soon">Due in 1 hour, at %1$s</string>
+    <string name="notif_due_now">Due now, at %1$s</string>
+    <string name="notif_due_today">Due today</string>
+    <string name="notif_custom">Reminder, %1$s</string>
+    <string name="notif_done">Done</string>
+    <string name="notif_snooze">+1 hour</string>
+    <string name="settings_reminders">Reminders</string>
+    <string name="settings_notif_on">Notifications are on. By default you get one when a task starts and one hour before its deadline; a task can have its own list of reminders.</string>
+    <string name="settings_notif_off">Notifications are off, so no reminders will show.</string>
+    <string name="settings_notif_allow">Allow notifications</string>
+
+    <!-- Quick add -->
+    <string name="qa_when">When</string>
+    <string name="qa_deadline">Deadline</string>
+    <string name="qa_next_week">Next week</string>
+    <string name="qa_pick">Pick a date</string>
+    <string name="qa_time">Time</string>
+    <string name="qa_add_deadline">+ Deadline</string>
+    <string name="qa_added">Added: %1$s</string>
+    <string name="swipe_reschedule">Reschedule</string>
+    <string name="resched_evening">This evening</string>
+    <string name="undo_rescheduled">Task rescheduled</string>
+
+    <!-- Opened from another app (BookahCalendar) -->
+    <string name="msg_task_not_found">That task was not found</string>
+
+    <!-- Manual order (list screens) -->
+    <string name="order_reorder">Reorder</string>
+    <string name="order_done">Done</string>
+    <string name="order_move_up">Move up</string>
+    <string name="order_move_down">Move down</string>
+    <string name="order_drag">Drag to reorder</string>
+    <string name="order_moved">Moved to position %1$d of %2$d</string>
+    <string name="order_hint">Drag a handle, or use the arrows. Order is kept within the same level.</string>
+
+    <!-- Phase 3: repeats -->
+    <string name="repeat_none">Does not repeat</string>
+    <string name="repeat_daily">Daily</string>
+    <string name="repeat_weekly">Weekly</string>
+    <string name="repeat_monthly">Monthly</string>
+    <string name="repeat_yearly">Yearly</string>
+    <string name="repeat_every_label">Every</string>
+    <string name="repeat_on_days">On</string>
+    <string name="repeat_month_day">On day %1$d</string>
+    <string name="repeat_nth">%1$s, on the %2$s %3$s</string>
+    <string name="repeat_nth_f_1">first</string>
+    <string name="repeat_nth_f_2">second</string>
+    <string name="repeat_nth_f_3">third</string>
+    <string name="repeat_nth_f_4">fourth</string>
+    <string name="repeat_nth_f_last">last</string>
+    <string name="repeat_nth_n_1">first</string>
+    <string name="repeat_nth_n_2">second</string>
+    <string name="repeat_nth_n_3">third</string>
+    <string name="repeat_nth_n_4">fourth</string>
+    <string name="repeat_nth_n_last">last</string>
+    <string name="repeat_ends">Ends</string>
+    <string name="repeat_end_never">Never</string>
+    <string name="repeat_end_on">On a date</string>
+    <string name="repeat_end_after">After a number of times</string>
+    <string name="repeat_after_done">%1$s, counted from when it is done</string>
+    <string name="repeat_from_done_switch">Repeat after I complete it</string>
+    <string name="repeat_from_done_hint">The next date is counted from the day you tick it, not from the old date.</string>
+    <string name="repeat_needs_date">A repeating task needs a start or a deadline. Saving gives it a start on %1$s.</string>
+    <string name="repeat_custom_kept">This rule was made in another app. It is kept as it is unless you save a new one.</string>
+    <string name="repeat_no_date">Needs a start or a deadline to repeat</string>
+    <string name="repeat_save">Save</string>
+    <string name="repeat_chip">Repeat: %1$s</string>
+
+    <!-- Phase 3: several reminders -->
+    <string name="reminders_defaults_note">These are the default reminders. Change one and this task gets its own list.</string>
+    <string name="reminders_use_defaults">Use the default reminders</string>
+    <string name="reminders_none">No reminders</string>
+    <string name="reminders_add">Add a reminder</string>
+    <string name="reminder_at_start">At the start</string>
+    <string name="reminder_at_deadline">At the deadline</string>
+    <string name="reminder_set_time">At a set date and time</string>
+    <string name="reminder_foreign">set in another app</string>
+    <string name="reminder_default">default</string>
+    <string name="reminder_remove">Remove reminder: %1$s</string>
+    <string name="reminders_need_date">Give the task a start or a deadline to remind before it.</string>
+    <string name="reminder_gone">its date was removed</string>
+    <string name="notif_tomorrow">Tomorrow</string>
+    <string name="notif_starts_when">Starts %1$s</string>
+    <string name="notif_due_when">Deadline %1$s</string>
+
+    <!-- Phase 3 review fixes -->
+    <plurals name="repeat_times_n">
+        <item quantity="one">%1$s, %2$d time</item>
+        <item quantity="other">%1$s, %2$d times</item>
+    </plurals>
+    <plurals name="repeat_count_n">
+        <item quantity="one">%1$d time</item>
+        <item quantity="other">%1$d times</item>
+    </plurals>
+    <string name="repeat_list_two">%1$s and %2$s</string>
+    <string name="repeat_wd_1">Monday</string>
+    <string name="repeat_wd_2">Tuesday</string>
+    <string name="repeat_wd_3">Wednesday</string>
+    <string name="repeat_wd_4">Thursday</string>
+    <string name="repeat_wd_5">Friday</string>
+    <string name="repeat_wd_6">Saturday</string>
+    <string name="repeat_wd_7">Sunday</string>
+    <string name="repeat_every_less">Every: fewer</string>
+    <string name="repeat_every_more">Every: more</string>
+    <string name="repeat_count_less">Times: fewer</string>
+    <string name="repeat_count_more">Times: more</string>
+    <string name="repeat_month_skip_hint">Months without day %1$d are skipped. With \"Repeat after I complete it\", the last day of the month is used instead.</string>
+    <string name="msg_repeat_unknown">The next date of this repeating task could not be worked out, so nothing was changed.</string>
+    <string name="msg_repeat_needs_date">A repeating task needs a start or a deadline. Remove the repeat first to clear both.</string>
+
+    <!-- Phase 5: overdue tamer -->
+    <string name="resched_weekend">Weekend</string>
+    <string name="overdue_move_all">Move all to</string>
+    <string name="overdue_confirm_to">To: %1$s</string>
+    <string name="overdue_confirm_yes">Move</string>
+    <plurals name="overdue_confirm_title">
+        <item quantity="one">Move %1$d task?</item>
+        <item quantity="other">Move %1$d tasks?</item>
+    </plurals>
+    <plurals name="overdue_confirm_readonly">
+        <item quantity="one">%1$d is in a read-only list and stays where it is.</item>
+        <item quantity="other">%1$d are in read-only lists and stay where they are.</item>
+    </plurals>
+    <plurals name="undo_moved_n">
+        <item quantity="one">%1$d task moved</item>
+        <item quantity="other">%1$d tasks moved</item>
+    </plurals>
+    <plurals name="msg_moved_skipped">
+        <item quantity="one">%1$d task was left as it is (it changed meanwhile, or has a change waiting for you).</item>
+        <item quantity="other">%1$d tasks were left as they are (they changed meanwhile, or have a change waiting for you).</item>
+    </plurals>
+    <plurals name="overdue_confirm_repeating">
+        <item quantity="one">%1$d repeating task stays: move it on its own.</item>
+        <item quantity="other">%1$d repeating tasks stay: move them one by one.</item>
+    </plurals>
+    <string name="sync_list_errors">Some lists could not be read this time; they show the saved copy.</string>
+    <string name="err_sign_in_failed">Sign-in did not finish: the server\'s answer could not be read. Try again.</string>
+
+    <!-- Phase 5: day strip -->
+    <string name="strip_all_day">All day</string>
+    <string name="strip_until">until %1$s</string>
+    <string name="strip_from">from %1$s</string>
+    <string name="strip_range">%1$s–%2$s</string>
+    <string name="strip_heading">Today in your calendar</string>
+    <string name="strip_open">Open in BookahCalendar</string>
+    <string name="settings_strip">Day strip</string>
+    <string name="settings_strip_show">Show calendar events on Today</string>
+    <string name="settings_strip_note">Today\'s events from your Nextcloud calendars, shown above the tasks. Read only: BookahTasks never changes an event.</string>
+    <string name="settings_strip_none">No event calendars yet. They appear after the next sync.</string>
+
+    <!-- Phase 5: share and tile -->
+    <string name="qa_link">Link: %1$s</string>
+    <string name="msg_share_signed_out">Sign in first. The shared text was not kept.</string>
+    <string name="tile_label">New task</string>
+
+    <!-- Phase 5: waiting for -->
+    <string name="label_waiting">Waiting for</string>
+    <string name="waiting_for_person">Waiting for %1$s</string>
+    <string name="waiting_none">Not waiting</string>
+    <string name="waiting_dialog_title">Waiting for someone</string>
+    <string name="waiting_person_hint">Who? (optional)</string>
+    <string name="waiting_check_back">Check back on</string>
+    <string name="waiting_in_3">In 3 days</string>
+    <string name="waiting_in_14">In 2 weeks</string>
+    <string name="waiting_deadline_moves">The deadline is earlier, so it moves to this date too.</string>
+    <string name="waiting_stop">Stop waiting</string>
+    <string name="waiting_until">%1$s, check back %2$s</string>
+    <string name="waiting_repeating">A repeating task cannot be put on waiting: its start date would move the whole series.</string>
+    <string name="nav_waiting">Waiting</string>
+    <string name="empty_waiting">Nothing is waiting on someone.</string>
+    <string name="undo_waiting">Marked as waiting</string>
+    <string name="undo_waiting_end">No longer waiting</string>
+
+    <!-- Phase 5: search -->
+    <string name="search_open">Search</string>
+    <string name="search_hint">Titles, notes and tags</string>
+    <string name="search_include_done">Include done</string>
+    <string name="search_start">Type to search every list shown in the app.</string>
+    <string name="search_none">Nothing found.</string>
+    <string name="search_clear">Clear the search</string>
+</resources>

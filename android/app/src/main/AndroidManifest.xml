@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Phase 5 day strip: a tap on an event opens BookahCalendar when it is installed (Android 11+ hides other apps unless named here). -->
+    <queries>
+        <package android:name="dev.bookah.calendar" />
+    </queries>
+
+    <!-- allowBackup is off: the encrypted password cannot be restored on another phone, so the owner signs in again there. -->
+    <application
+        android:name=".BookahApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BookahTasks">
+        <receiver android:name=".ReminderReceiver" android:exported="false" />
+        <receiver android:name=".BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
+        <!-- singleTask: a link from another app (BookahCalendar) always reaches the one running copy of the app (onNewIntent),
+             never a second copy inside the other app's task, whether or not the caller adds FLAG_ACTIVITY_NEW_TASK.
+             taskAffinity="": no other app can place its screens in BookahTasks' task by claiming the same affinity. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- bookahtasks://task?uid=<encoded UID>&list=<encoded list href>: opens that task's page; it never changes anything.
+                 Not BROWSABLE: web pages cannot start it; BookahCalendar sends an explicit intent (setPackage). -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="bookahtasks" android:host="task" />
+            </intent-filter>
+        </activity>
+        <!-- Phase 5: "Share to BookahTasks". Only plain text; it shows nothing, hands the cleaned text to MainActivity and closes.
+             excludeFromRecents and no history: it never stays behind in the sharing app's task. -->
+        <activity
+            android:name=".ShareActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:label="@string/tile_label"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <!-- Phase 5: quick-settings tile "New task". Only the system can bind it (BIND_QUICK_SETTINGS_TILE). -->
+        <service
+            android:name=".NewTaskTile"
+            android:exported="true"
+            android:icon="@drawable/ic_tile_add"
+            android:label="@string/tile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

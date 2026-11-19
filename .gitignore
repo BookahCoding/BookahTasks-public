@@ -1,0 +1,14 @@
+.gradle/
+build/
+local.properties
+keystore.properties
+*.p12
+*.jks
+.idea/
+*.apk
+__pycache__/
+.venv/
+design-reference/
+
+# local agent work folders
+.claude/

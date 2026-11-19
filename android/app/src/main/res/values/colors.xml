@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- washi paper behind the sun and tick (icon draft A) -->
+    <color name="icon_background">#F4EDD9</color>
+</resources>

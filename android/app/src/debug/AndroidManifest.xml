@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- Debug builds only: fills the cache with generated tasks so screens and speed can be tested without any real data. -->
+        <receiver android:name=".debug.SeedReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="dev.bookah.tasks.SEED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".debug.OutboxSelfTestReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="dev.bookah.tasks.OUTBOX_SELFTEST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".debug.ReminderTestReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="dev.bookah.tasks.REMINDER_TEST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".debug.SearchTestReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="dev.bookah.tasks.SEARCH_TEST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".debug.QueueSeedReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="dev.bookah.tasks.QUEUE_SEED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
