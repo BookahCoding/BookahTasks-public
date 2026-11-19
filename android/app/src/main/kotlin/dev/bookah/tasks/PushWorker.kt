@@ -25,6 +25,7 @@ class PushWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
             catch (e: kotlinx.coroutines.CancellationException) { throw e }
             catch (_: Exception) { return@withContext Result.retry() }
         graph.changed.tryEmit(Unit)          // the open screen reads the saved copy again
+        dev.bookah.tasks.widget.WidgetRefresh.request(applicationContext)
         graph.rescheduleReminders()          // tasks may have changed on the server
         if (report.offline && graph.outbox.count() > 0) Result.retry() else Result.success()
     }

@@ -265,6 +265,7 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
         val crash = io { CrashLog.read(graph.appContext) }
         scheduleEvents()          // on its own: the tasks never wait for the calendar events
         if (version == loadedVersion && _state.value.lists.isNotEmpty()) { _state.update { it.copy(crashLog = crash) }; resolveLink(); return }
+        dev.bookah.tasks.widget.WidgetRefresh.request(graph.appContext)          // the saved copy changed (a sync, a sign-in, a hidden list): the home-screen widget reads it again
         val loadStart = android.os.SystemClock.elapsedRealtime()
         val queue = withContext(Dispatchers.Default) { graph.store.outboxAll() }
         fun titleOf(ics: String?): String? = ics?.let { TaskParser.parse(StoredObject("/x.ics", 0, "", it), zone).firstOrNull { t -> !t.isOccurrenceCopy }?.title }
@@ -387,6 +388,7 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
         _state.update { it.copy(confirmSignOut = false) }
         viewModelScope.launch {
             io { graph.sessions.clear(); graph.store.clearAll() }
+            dev.bookah.tasks.widget.WidgetRefresh.request(graph.appContext)          // the widget must not keep showing the signed-out account's tasks
             RefreshWorker.cancel(graph.appContext)
             ReminderScheduler(graph.appContext).reschedule(emptyList())          // no alarms for a task list that is no longer here
             session = null
@@ -418,6 +420,7 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
     private suspend fun afterChange() {
         reload()
         PushWorker.enqueue(graph.appContext, delaySeconds = UNDO_SECONDS + 2L)
+        dev.bookah.tasks.widget.WidgetRefresh.request(graph.appContext)          // the home-screen widget shows the change at once
     }
 
     private fun icsOf(t: Task): String? = graph.store.objectByHref(t.href)?.ics

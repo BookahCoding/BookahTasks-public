@@ -89,7 +89,7 @@ Everything stays in standard fields (plan, section 6). These are my rulings; the
 
 ## 5b. Review fix pass (18 Nov 2026, evening): rulings changed or added
 
-- **Move-all skips repeating tasks (ruling, the owner to confirm).** The question says "N repeating tasks stay: move them one by one"; the
+- **Move-all skips repeating tasks (ruling, confirmed by the owner 19 Nov 2026).** The question says "N repeating tasks stay: move them one by one"; the
   one-task Reschedule of a repeating task is unchanged (start and deadline keep their gap). Plan and writes happen under the store lock,
   and each write only if the task's text is still the one the plan was made from (compare and set, Undo too).
 - **Nothing read from one list escapes a sync.** A task list whose answer cannot be read (not valid XML, a storage error) is counted

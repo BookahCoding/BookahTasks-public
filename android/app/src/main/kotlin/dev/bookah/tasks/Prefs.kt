@@ -48,9 +48,9 @@ class PrefsStore(private val context: Context) {
     private val dayStrip get() = androidx.datastore.preferences.core.booleanPreferencesKey("day_strip")
     suspend fun setDayStrip(on: Boolean) = context.dataStore.edit { it[dayStrip] = on }
 
-    suspend fun setTheme(id: String) = context.dataStore.edit { it[theme] = ThemeCatalog.get(id).id }
-    suspend fun setAppearance(a: Appearance) = context.dataStore.edit { it[appearance] = a.name }
-    suspend fun setEveningHour(h: Int) = context.dataStore.edit { it[evening] = h.coerceIn(12, 23) }
+    suspend fun setTheme(id: String) { context.dataStore.edit { it[theme] = ThemeCatalog.get(id).id }; dev.bookah.tasks.widget.WidgetRefresh.request(context) }
+    suspend fun setAppearance(a: Appearance) { context.dataStore.edit { it[appearance] = a.name }; dev.bookah.tasks.widget.WidgetRefresh.request(context) }
+    suspend fun setEveningHour(h: Int) { context.dataStore.edit { it[evening] = h.coerceIn(12, 23) }; dev.bookah.tasks.widget.WidgetRefresh.request(context) }
     suspend fun setArtwork(on: Boolean) = context.dataStore.edit { it[artwork] = on }
     suspend fun setDefaultListHref(href: String?) = context.dataStore.edit { if (href == null) it.remove(defaultList) else it[defaultList] = href }
 }

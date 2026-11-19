@@ -17,6 +17,7 @@ English and Greek. Greek: see [README.el.md](README.el.md).
 - **Waiting for**: mark a task as waiting on someone, with a check-back date; it leaves Today until then.
 - **Day strip**: today's events from your Nextcloud calendars shown above the tasks, read-only (can be switched off per calendar).
 - **Share to BookahTasks** from any app (a shared link becomes the task's link), and a quick-settings tile for a new task.
+- **Home-screen widget "Today"**: today's tasks (overdue folded, This evening) on your home screen; tap a task to open it, tap its circle to tick it off (tap again within two minutes to reopen), tap + to add a task. It follows your theme, light or dark.
 - **Links with BookahCalendar**: BookahCalendar shows your tasks on their days and can open a task here; a tap on a day-strip event opens BookahCalendar when it is installed.
 - 11 colour themes, light, dark or system appearance, optional seasonal artwork, large-text and screen-reader support.
 
@@ -55,7 +56,7 @@ Every release is signed with the same key. Its certificate SHA-256 fingerprint i
 On first start type your server address (for example `https://nextcloud.example.org`), your user name and the app password.
 
 ## Privacy
-The app contacts only **your Nextcloud server**, and **GitHub** only to check for a newer version (one anonymous request to this repository's public releases list, in builds that have the check; nothing about you or your tasks is sent). No analytics, no advertising, no crash upload, no account with us, no AI or cloud service of any kind. Your app password is stored encrypted with the Android Keystore and is never shown or logged. A crash log, if any, stays on the phone (Settings, About).
+The app contacts only **your Nextcloud server**, and **GitHub** only to check for a newer version (one anonymous request to this repository's public releases list, in builds that have the check; nothing about you or your tasks is sent). No analytics, no advertising, no crash upload, no account with us, no AI or cloud service of any kind. Your app password is stored encrypted with the Android Keystore and is never shown or logged. A crash log, if any, stays on the phone (Settings, About). The home-screen widget shows your task titles on the home screen, like any widget; it makes no network request of its own.
 
 ## Build from source
 Requirements: a JDK 17 or newer (Android Studio's bundled one works), the Android SDK (`ANDROID_HOME`, or `sdk.dir` in `android/local.properties`), and the Gradle wrapper that is included.

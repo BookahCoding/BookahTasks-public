@@ -27,6 +27,7 @@ class RefreshWorker(context: Context, params: WorkerParameters) : CoroutineWorke
         catch (e: kotlinx.coroutines.CancellationException) { throw e }
         catch (_: Exception) {}
         graph.changed.tryEmit(Unit)
+        dev.bookah.tasks.widget.WidgetRefresh.request(applicationContext)
         graph.rescheduleReminders()
         Result.success()
     }

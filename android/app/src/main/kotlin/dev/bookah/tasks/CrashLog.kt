@@ -24,6 +24,11 @@ object CrashLog {
 
     fun file(context: Context) = File(context.filesDir, "crash.log")
 
+    /** Records a caught error (class names and frames only, like a crash) so a failure the widget survived is still visible in Settings. */
+    fun record(context: Context, error: Throwable) {
+        runCatching { append(file(context), describe(error, Thread.currentThread().name)) }
+    }
+
     fun read(context: Context): String = runCatching { file(context).takeIf { it.exists() }?.readText().orEmpty() }.getOrDefault("")
 
     fun clear(context: Context) { runCatching { file(context).delete() } }

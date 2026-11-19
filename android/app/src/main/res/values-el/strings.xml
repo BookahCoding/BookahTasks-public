@@ -371,4 +371,15 @@
     <string name="search_start">Γράψε για να ψάξεις σε όλες τις λίστες της εφαρμογής.</string>
     <string name="search_none">Δεν βρέθηκε τίποτα.</string>
     <string name="search_clear">Καθαρισμός αναζήτησης</string>
+    <!-- Widget αρχικής οθόνης (1.1) -->
+    <string name="widget_name">Σήμερα</string>
+    <string name="widget_description">Οι εργασίες της σήμερα, με δυνατότητα ολοκλήρωσης από την αρχική οθόνη.</string>
+    <string name="widget_new_task">Νέα εργασία</string>
+    <string name="widget_overdue">Εκπρόθεσμες · %1$d</string>
+    <string name="widget_more">+ %1$d ακόμη</string>
+    <string name="widget_next_date">Ορίστηκε η επόμενη ημερομηνία: %1$s</string>
+    <string name="widget_signed_out">Ανοίξτε το BookahTasks για σύνδεση</string>
+    <string name="widget_error">Δεν ήταν δυνατή η ανάγνωση των εργασιών. Πατήστε για άνοιγμα.</string>
+    <string name="widget_mark_done">Ολοκλήρωση: %1$s</string>
+    <string name="widget_reopen">Επαναφορά: %1$s</string>
 </resources>

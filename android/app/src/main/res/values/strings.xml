@@ -371,4 +371,15 @@
     <string name="search_start">Type to search every list shown in the app.</string>
     <string name="search_none">Nothing found.</string>
     <string name="search_clear">Clear the search</string>
+    <!-- Home-screen widget (1.1) -->
+    <string name="widget_name">Today</string>
+    <string name="widget_description">Today\'s tasks, tick them off from the home screen.</string>
+    <string name="widget_new_task">New task</string>
+    <string name="widget_overdue">Overdue · %1$d</string>
+    <string name="widget_more">+ %1$d more</string>
+    <string name="widget_next_date">Next date set: %1$s</string>
+    <string name="widget_signed_out">Open BookahTasks to sign in</string>
+    <string name="widget_error">Could not read tasks. Tap to open.</string>
+    <string name="widget_mark_done">Mark done: %1$s</string>
+    <string name="widget_reopen">Reopen: %1$s</string>
 </resources>

@@ -80,7 +80,9 @@ class LiveBuildBTest {
                 val (f, tasks) = fresh(); val t = tasks.first { it.uid == pUid }; val raw = f.objectByHref(pHref)!!.ics
                 note("fields title=${t.title == "Live B γονέας, με κόμμα"} notes=${t.notes == "line one\nline two"} prio=${t.priority == Priority.High} tags=${t.tags == listOf("alpha", "beta")} someday=${t.someday} start=${t.start == newStart} due=${t.due == newDue} rrule=${raw.contains("RRULE")} alarm=${raw.contains("BEGIN:VALARM")}")
                 assertEquals("Live B γονέας, με κόμμα", t.title); assertEquals("line one\nline two", t.notes); assertEquals(Priority.High, t.priority)
-                assertEquals(listOf("alpha", "beta"), t.tags); assertTrue(t.someday); assertEquals(newStart, t.start); assertEquals(newDue, t.due)
+                assertEquals(listOf("alpha", "beta"), t.tags); assertTrue(t.someday)
+                assertEquals(TaskWhen(newStart.date, null), t.start)          // since 0.3.0 a 00:00 start is read back as a date (see CoercedDatesTest)
+                assertEquals(newDue, t.due)
                 assertTrue(raw.contains("RRULE") && raw.contains("BEGIN:VALARM"))
             }
 

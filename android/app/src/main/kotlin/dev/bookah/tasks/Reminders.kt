@@ -158,18 +158,9 @@ class ReminderReceiver : BroadcastReceiver() {
             }
             ACTION_DONE -> act(context, graph, r, intent) { obj, zone, now ->
                 // like ticking in the app: a repeating task moves on; finishing a parent also finishes its open subtasks
-                val completion = TaskEdit.complete(obj.ics, now, zone)
-                // the next date could not be worked out: nothing is written and the notification stays (the owner sees the task again)
-                if (completion is dev.bookah.tasks.data.Completion.Unchanged) throw IllegalStateException("next date unknown")
-                graph.outbox.edit(r.href, completion.ics)
-                if (completion is dev.bookah.tasks.data.Completion.Done) {
-                    val all = dev.bookah.tasks.data.TaskParser.parseAll(graph.store.allObjects(), zone)
-                    for (k in dev.bookah.tasks.data.TaskViews.descendants(all, r.uid, openOnly = true)) {
-                        val kobj = graph.store.objectByHref(k.href) ?: continue
-                        val kc = TaskEdit.complete(kobj.ics, now, zone)
-                        if (kc !is dev.bookah.tasks.data.Completion.Unchanged) graph.outbox.edit(k.href, kc.ics)
-                    }
-                }
+                val out = dev.bookah.tasks.data.TaskCompletion.tick(graph.store, graph.outbox, r.href, null, zone, now)
+                // the next date could not be worked out, or the task is in conflict: nothing is written and the notification stays (the owner sees the task again)
+                if (out is dev.bookah.tasks.data.TaskCompletion.Outcome.Skipped) throw IllegalStateException(out.reason)
             }
             ACTION_TOMORROW -> act(context, graph, r, intent) { obj, zone, now ->
                 // the same rule as "Tomorrow" in the swipe sheet (which date moves, times kept, Someday left)
@@ -200,6 +191,7 @@ class ReminderReceiver : BroadcastReceiver() {
                 NotificationManagerCompat.from(context).cancel(notificationId)          // reached only when the change was saved (or there was nothing to do)
                 PushWorker.enqueue(context, 0)
                 graph.changed.tryEmit(Unit)
+                dev.bookah.tasks.widget.WidgetRefresh.request(context)          // a button on a notification changes today's list
                 graph.rescheduleReminders()
             } catch (e: Exception) {
                 // a task in conflict or odd data: the notification stays, so the task is not silently left undone
@@ -215,7 +207,7 @@ class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val pending = goAsync()
         CoroutineScope(Dispatchers.Default).launch {
-            try { (context.applicationContext as BookahApp).graph.rescheduleReminders() } finally { pending.finish() }
+            try { (context.applicationContext as BookahApp).graph.rescheduleReminders(); dev.bookah.tasks.widget.WidgetRefresh.request(context) } finally { pending.finish() }
         }
     }
 }
