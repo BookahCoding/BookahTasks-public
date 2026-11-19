@@ -120,7 +120,15 @@
     <string name="appearance_light">Φωτεινή</string>
     <string name="appearance_dark">Σκοτεινή</string>
     <string name="settings_sync">Συγχρονισμός</string>
-    <string name="settings_sync_note">Η ανανέωση στο παρασκήνιο τρέχει περίπου κάθε 15 λεπτά όταν το τηλέφωνο έχει δίκτυο. Το Nextcloud είναι προσβάσιμο μόνο όταν το Tailscale είναι ανοιχτό.</string>
+    <string name="settings_sync_note">Η ανανέωση στο παρασκήνιο τρέχει περίπου κάθε 15 λεπτά όταν το επιτρέπει το κινητό και υπάρχει δίκτυο, και η εφαρμογή συγχρονίζει όταν επιστρέφεις σε αυτήν. Το Nextcloud είναι προσβάσιμο μόνο όταν είναι ανοιχτό το Tailscale. Στα κινητά Xiaomi βάλε την εφαρμογή σε Αυτόματη εκκίνηση και την Εξοικονόμηση μπαταρίας σε Χωρίς περιορισμούς, αλλιώς το κινητό μπορεί να σταματά την ανανέωση στο παρασκήνιο.</string>
+    <string name="updates_on">Κοιτάζει στο GitHub μόνο όταν πατήσεις το κουμπί παρακάτω. Δεν στέλνεται τίποτα για σένα ή τις εργασίες σου.</string>
+    <string name="updates_check">Έλεγχος για ενημερώσεις</string>
+    <string name="updates_checking">Έλεγχος…</string>
+    <string name="updates_latest">Έχεις την τελευταία έκδοση (%1$s).</string>
+    <string name="updates_available">Η έκδοση %1$s είναι διαθέσιμη.</string>
+    <string name="updates_open">Άνοιγμα της σελίδας λήψης</string>
+    <string name="updates_unreachable">Δεν βρέθηκε το GitHub. Έλεγξε τη σύνδεση και δοκίμασε ξανά.</string>
+    <string name="updates_failed">Η απάντηση του GitHub δεν μπόρεσε να χρησιμοποιηθεί.</string>
     <string name="week_of">Εβδομάδα από %1$s</string>
     <string name="speed">Ταχύτητα</string>
     <string name="speed_start">Από το άνοιγμα της οθόνης μέχρι τις εργασίες: %1$s ms</string>

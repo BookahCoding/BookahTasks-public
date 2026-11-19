@@ -24,6 +24,8 @@ data class Prefs(
     val defaultListHref: String? = null,
     /** Phase 5: today's calendar events above the tasks on Today and Schedule (on by default). */
     val showDayStrip: Boolean = true,
+    /** When a sync last succeeded, from the screen or the background job (null = never). */
+    val lastSyncMs: Long? = null,
 )
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("prefs")
@@ -43,8 +45,11 @@ class PrefsStore(private val context: Context) {
             artwork = p[artwork] ?: true,
             defaultListHref = p[defaultList],
             showDayStrip = p[dayStrip] ?: true,
+            lastSyncMs = p[lastSync],
         )
     }
+    private val lastSync = androidx.datastore.preferences.core.longPreferencesKey("last_sync_ms")
+    suspend fun setLastSync(ms: Long) { context.dataStore.edit { it[lastSync] = ms } }
     private val dayStrip get() = androidx.datastore.preferences.core.booleanPreferencesKey("day_strip")
     suspend fun setDayStrip(on: Boolean) = context.dataStore.edit { it[dayStrip] = on }
 

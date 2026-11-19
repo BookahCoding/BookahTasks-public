@@ -139,7 +139,7 @@ class MainActivity : ComponentActivity() {
                                     onEveningHour = model::setEveningHour, onSync = model::refresh, onClearCrash = model::clearCrashLog,
                                     onArtwork = model::setArtwork, onDefaultList = model::setDefaultList,
                                     onRetry = model::retryFailed, onDiscard = model::discardFailed,
-                                    onDayStrip = model::setDayStrip, onShowEvents = model::setShowEvents,
+                                    onDayStrip = model::setDayStrip, onShowEvents = model::setShowEvents, onCheckUpdates = model::checkUpdates,
                                 )
                                 // not on top of the open menu, nor over the arrows of the reorder mode
                                 val showFab = state.openTask == null && !state.settingsOpen && !state.searchOpen && !state.reordering && drawer.targetValue == DrawerValue.Closed

@@ -23,7 +23,7 @@ class RefreshWorker(context: Context, params: WorkerParameters) : CoroutineWorke
         val graph = (applicationContext as BookahApp).graph
         val session = graph.sessions.load() ?: return@withContext Result.success()
         // an odd answer must never fail the worker for good; a cut-off event download goes on from where it stopped next time
-        try { graph.syncLock.withLock { graph.sync.sync(graph.apiFactory(session)) } }
+        try { graph.noteSync(graph.syncLock.withLock { graph.sync.sync(graph.apiFactory(session)) }) }
         catch (e: kotlinx.coroutines.CancellationException) { throw e }
         catch (_: Exception) {}
         graph.changed.tryEmit(Unit)
@@ -43,5 +43,12 @@ class RefreshWorker(context: Context, params: WorkerParameters) : CoroutineWorke
         }
 
         fun cancel(context: Context) = WorkManager.getInstance(context).cancelUniqueWork(NAME)
+
+        /** One refresh now (as soon as there is a network); a second request while one is waiting is dropped. */
+        fun runOnce(context: Context) {
+            val request = androidx.work.OneTimeWorkRequestBuilder<RefreshWorker>()
+                .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build()
+            WorkManager.getInstance(context).enqueueUniqueWork("refresh-now", androidx.work.ExistingWorkPolicy.KEEP, request)
+        }
     }
 }

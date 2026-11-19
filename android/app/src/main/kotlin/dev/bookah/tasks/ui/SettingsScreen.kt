@@ -51,7 +51,7 @@ fun SettingsScreen(
     state: UiState, onBack: () -> Unit, onSignOut: () -> Unit, onTheme: (String) -> Unit, onAppearance: (Appearance) -> Unit,
     onEveningHour: (Int) -> Unit, onSync: () -> Unit, onClearCrash: () -> Unit, onArtwork: (Boolean) -> Unit,
     onDefaultList: (String?) -> Unit, onRetry: (Long) -> Unit, onDiscard: (Long) -> Unit,
-    onDayStrip: (Boolean) -> Unit = {}, onShowEvents: (Long, Boolean) -> Unit = { _, _ -> },
+    onDayStrip: (Boolean) -> Unit = {}, onShowEvents: (Long, Boolean) -> Unit = { _, _ -> }, onCheckUpdates: () -> Unit = {},
 ) {
     var chooseList by androidx.compose.runtime.saveable.rememberSaveable { androidx.compose.runtime.mutableStateOf(false) }
     if (chooseList) DefaultListDialog(state, onPick = { onDefaultList(it); chooseList = false }, onDismiss = { chooseList = false })
@@ -134,7 +134,7 @@ fun SettingsScreen(
                 }
 
                 Group(stringResource(R.string.settings_sync))
-                val last = state.lastSyncMs?.let { DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(it)) }
+                val last = (state.prefs.lastSyncMs ?: state.lastSyncMs)?.let { DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(it)) }
                 Text(if (last != null) stringResource(R.string.sync_last, last) else stringResource(R.string.sync_never))
                 state.lastReport?.let { r ->
                     when {
@@ -169,6 +169,25 @@ fun SettingsScreen(
 
                 Group(stringResource(R.string.settings_about))
                 Text(stringResource(R.string.settings_version, BuildConfig.VERSION_NAME))
+                if (BuildConfig.RELEASES_REPO.isNotBlank()) {
+                    Text(stringResource(R.string.updates_on), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    OutlinedButton(onCheckUpdates, enabled = !state.updateBusy) {
+                        Text(stringResource(if (state.updateBusy) R.string.updates_checking else R.string.updates_check))
+                    }
+                    when (val u = state.updateResult) {
+                        is dev.bookah.tasks.data.UpdateResult.UpToDate -> Text(stringResource(R.string.updates_latest, u.version))
+                        is dev.bookah.tasks.data.UpdateResult.Available -> {
+                            Text(stringResource(R.string.updates_available, u.version))
+                            val ctx = androidx.compose.ui.platform.LocalContext.current
+                            androidx.compose.material3.Button({ runCatching { ctx.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(u.pageUrl))) } }) {
+                                Text(stringResource(R.string.updates_open))
+                            }
+                        }
+                        dev.bookah.tasks.data.UpdateResult.Unreachable -> Text(stringResource(R.string.updates_unreachable), color = MaterialTheme.colorScheme.error)
+                        dev.bookah.tasks.data.UpdateResult.Failed -> Text(stringResource(R.string.updates_failed), color = MaterialTheme.colorScheme.error)
+                        null -> {}
+                    }
+                }
                 Text(stringResource(R.string.settings_privacy), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Text(stringResource(R.string.settings_crash), Modifier.padding(top = 8.dp), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 if (state.crashLog.isBlank()) Text(stringResource(R.string.settings_crash_none), style = MaterialTheme.typography.bodySmall)

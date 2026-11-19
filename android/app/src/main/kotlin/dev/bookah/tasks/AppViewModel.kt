@@ -69,6 +69,9 @@ data class UiState(
     val syncing: Boolean = false,
     val lastReport: SyncReport? = null,
     val lastSyncMs: Long? = null,
+    /** The "Check for updates" button of Settings (release builds only). */
+    val updateBusy: Boolean = false,
+    val updateResult: dev.bookah.tasks.data.UpdateResult? = null,
     val lists: List<TaskList> = emptyList(),
     /** The tasks of every shown list that holds tasks. */
     val tasks: List<Task> = emptyList(),
@@ -192,6 +195,7 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
             graph.sessions.save(candidate)
             session = candidate
             firstSyncDone = true
+            graph.noteSync(report)
             RefreshWorker.schedule(graph.appContext)
             _state.update { it.copy(signingIn = false, phase = Phase.SignedIn, signedInUser = candidate.user, lastReport = report, lastSyncMs = System.currentTimeMillis()) }
             reload()
@@ -218,6 +222,7 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
         viewModelScope.launch {
             val startedAt = android.os.SystemClock.elapsedRealtime()
             val report = syncNow(s)
+            graph.noteSync(report)
             val took = android.os.SystemClock.elapsedRealtime() - startedAt
             _state.update { it.copy(speed = it.speed.copy(syncMs = took), syncing = false, lastReport = report, lastSyncMs = if (report.error == null) System.currentTimeMillis() else it.lastSyncMs) }
             firstSyncDone = true
@@ -256,7 +261,23 @@ class AppViewModel(private val graph: AppGraph) : ViewModel(), TaskActions {
     /** Coming back to the app: pick up what a background refresh changed meanwhile. */
     fun onResume() {
         _state.update { it.copy(calendarInstalled = calendarInstalled()) }          // BookahCalendar may have been installed or removed meanwhile
-        if (_state.value.phase == Phase.SignedIn) viewModelScope.launch { reload() }
+        if (_state.value.phase == Phase.SignedIn) viewModelScope.launch {
+            reload()
+            // back in the app: sync now when the last successful sync is old (the background job may have been paused by the phone)
+            val last = graph.prefs.flow.first().lastSyncMs
+            if (dev.bookah.tasks.data.SyncPolicy.isStale(last, System.currentTimeMillis(), dev.bookah.tasks.data.SyncPolicy.RESUME_STALE_MS)) refresh()
+        }
+    }
+
+    /** Asks GitHub (the releases repository this build was made with) whether a newer version exists. Only on the button; does nothing in builds without one. */
+    fun checkUpdates() {
+        val repo = BuildConfig.RELEASES_REPO
+        if (repo.isBlank() || _state.value.updateBusy) return
+        _state.update { it.copy(updateBusy = true, updateResult = null) }
+        viewModelScope.launch {
+            val r = dev.bookah.tasks.data.UpdateChecker(graph.http).check(repo, BuildConfig.VERSION_NAME)
+            _state.update { it.copy(updateBusy = false, updateResult = r) }
+        }
     }
 
     /** Reads the saved copy and parses the tasks of the shown lists (off the main thread). Skipped when nothing changed. */

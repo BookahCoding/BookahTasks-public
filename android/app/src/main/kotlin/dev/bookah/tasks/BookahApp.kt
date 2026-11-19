@@ -58,6 +58,11 @@ class AppGraph(context: Context) {
      */
     val writeLock = Mutex()
     val prefs = PrefsStore(context)
+
+    /** Remembers the time of a successful sync (screen or background job), so Settings and the sync-on-return rule know the truth. */
+    suspend fun noteSync(report: dev.bookah.tasks.data.SyncReport) {
+        if (dev.bookah.tasks.data.SyncPolicy.succeeded(report)) prefs.setLastSync(System.currentTimeMillis())
+    }
 }
 
 class BookahApp : Application() {

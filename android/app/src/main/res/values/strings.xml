@@ -120,7 +120,15 @@
     <string name="appearance_light">Light</string>
     <string name="appearance_dark">Dark</string>
     <string name="settings_sync">Sync</string>
-    <string name="settings_sync_note">Background refresh runs about every 15 minutes while the phone has a network. Nextcloud is only reachable when Tailscale is on.</string>
+    <string name="settings_sync_note">Background refresh runs about every 15 minutes when the phone allows it and has a network, and the app syncs when you come back to it. Nextcloud is only reachable when Tailscale is on. On Xiaomi phones set the app to Autostart on and Battery saver to No restrictions, or the phone may pause the background refresh.</string>
+    <string name="updates_on">Looks at GitHub only when you tap the button below. Nothing about you or your tasks is sent.</string>
+    <string name="updates_check">Check for updates</string>
+    <string name="updates_checking">Checking…</string>
+    <string name="updates_latest">You have the latest version (%1$s).</string>
+    <string name="updates_available">Version %1$s is available.</string>
+    <string name="updates_open">Open the download page</string>
+    <string name="updates_unreachable">Could not reach GitHub. Check the connection and try again.</string>
+    <string name="updates_failed">The answer from GitHub could not be used.</string>
     <string name="week_of">Week of %1$s</string>
     <string name="speed">Speed</string>
     <string name="speed_start">Screen opened to tasks shown: %1$s ms</string>
